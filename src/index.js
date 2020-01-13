@@ -19,7 +19,8 @@ const mergeImages = (sources = [], options = {}) => new Promise(resolve => {
 	// Setup browser/Node.js specific variables
 	const canvas = options.Canvas ? new options.Canvas() : window.document.createElement('canvas');
 	const Image = options.Image || (options.Canvas ? options.Canvas.Image : window.Image);
-	if (options.Canvas) {
+	if (options.Canvas && options.Canvas.version && options.Canvas.version.indexOf('1.') === 0) {
+		// only needed for v1 of canvas
 		options.quality *= 100;
 	}
 
